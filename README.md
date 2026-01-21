@@ -1,77 +1,132 @@
-# ML in Practice
+##Titanic Machine Learning Pipeline (MLOps Practice)
 
-![image](https://github.com/user-attachments/assets/6b478ed0-6257-43c2-9c3a-e0f760431fd7)
+This project demonstrates a clean, script-based machine learning pipeline built using the Titanic dataset.
+It focuses on reproducibility, modular design, and MLOps-oriented structure, moving beyond notebook-only experimentation.
 
+##Project Overview
 
+The goal of this project is to predict passenger survival on the Titanic using supervised machine learning.
+Unlike exploratory notebook-only projects, this repository emphasizes:
 
-## Project Overview
-This repository provides a practical implementation of a Machine Learning pipeline using the Titanic dataset. It includes data preprocessing, model training, evaluation, and a simple deployment using Streamlit for real-time predictions.
+Modular data loading and preprocessing
 
-## Installation
-To set up the project locally, follow these steps:
+Script-driven training pipeline
 
-```bash
-# Clone the repository
-git clone https://github.com/mhemaly/ML-in-Practice.git
-cd ML-in-Practice
+Clear separation of concerns
 
-# Create a virtual environment (optional but recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows use 'venv\Scripts\activate'
+Production-ready project structure
 
-# Install dependencies
-pip install -r requirements.txt
-or
-pip install streamlit pandas scikit-learn joblib
-```
+##Dataset
 
-## Usage
-Run the Streamlit application with the following command:
+Dataset: Titanic dataset (Seaborn)
 
-```bash
-python main.py
-```
+Target variable: survived
 
-This will launch a web interface where users can input passenger details and receive a survival prediction.
+Selected features:
 
-## Project Structure
-```
+pclass
 
+sex
+
+age
+
+sibsp
+
+parch
+
+fare
+
+Preprocessing Steps
+
+Removed missing values
+
+Encoded categorical variable:
+
+male → 1
+
+female → 0
+
+# #Project Structure
 ML_in_practice/
-├── Notebooks/                                            # Jupyter notebooks for data analysis and model development
-│   ├── Titanic ML Model Pipline v1_user inpus.ipynb      # Notebook for initial pipeline
-│   ├── Titanic ML Model Pipline v2_Streamlit.ipynb       # Notebook for initial pipeline with advanced deployment
 │
-├── __pycache__/                                          # Compiled Python files
-│   ├── utils.cpython-38.pyc                              # Compiled utils.py
-│   └── model.cpython-38.pyc                              # Compiled model.py
+├── src/
+│   ├── train_and_evaluate.py   # Training pipeline script
+│   ├── utils.py                # Utility/helper functions
 │
-├── model/                                                # Directory containing trained model files
-│   ├── titanic_model.pkl                                 # Trained machine learning model
-│   └── scaler.pkl                                        # Scaler for feature normalization
+├── model/
+│   ├── titanic_model.pkl       # Trained ML model
+│   ├── scaler.pkl              # Feature scaling artifact
 │
-├── src/                                                  # Source code for data processing and model training
-│   ├── __init__.py                                       # Initialization file for src package
-│   ├── utils.py                                          # Code for data cleaning and preprocessing
+├── Notebooks/
+│   ├── Titanic ML Model Pipeline v1_user input.ipynb
+│   ├── Titanic ML Model Pipeline v2_Streamlit.ipynb
 │
-├── README.md                                             # Project documentation
-├── main.py                                               # Streamlit application for user interaction
-└── requirements.txt                                      # List of required packages
+├── requirements.txt
+├── README.md
 
+## Training Pipeline
 
-```
+The entire ML workflow is handled by a standalone Python script:
 
-## Contributing
-Contributions are welcome! To contribute:
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Commit your changes (`git commit -m 'Add new feature'`).
-4. Push to the branch (`git push origin feature-branch`).
-5. Open a pull request.
+src/train_and_evaluate.py
 
-## License
-This project is licensed under the MIT License. Feel free to use and modify it as needed.
+Pipeline Flow
 
-## Contact
-For any questions or suggestions, please open an issue on the repository or reach out to [eng.mhemaly@gmail.com].
+Load dataset using Seaborn
 
+Select relevant features
+
+Clean and preprocess data
+
+Split features (X) and target (y)
+
+Train and evaluate the model
+
+Save trained artifacts for reuse
+
+## How to Run
+ Install Dependencies
+pip install -r requirements.txt
+
+ Run the Training Pipeline
+python src/train_and_evaluate.py
+
+ Sample Output
+Training pipeline started
+Data loaded (714, 6)
+Pipeline executed successfully
+
+#3 Why This Project Matters
+
+This repository showcases:
+
+ Transition from notebooks → reproducible scripts
+
+ MLOps-ready structure
+
+ Clean data preprocessing pipeline
+
+ Model artifact versioning
+
+ Industry-style logging and execution flow
+
+## Future Improvements
+
+Planned enhancements include:
+
+Model evaluation metrics (accuracy, ROC-AUC, confusion matrix)
+
+Hyperparameter tuning
+
+Cross-validation
+
+CI/CD integration
+
+Model inference API (FastAPI / Streamlit)
+
+Experiment tracking (MLflow)
+
+## Author
+
+Aayushi Shekhat
+AI / ML | Data Science | MLOps Enthusiast
